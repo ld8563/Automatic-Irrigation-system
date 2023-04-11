@@ -1,0 +1,41 @@
+int R_pin = 13;
+int B_pin = 12;
+int G_pin = 11;
+int Motor = 10;
+int Sensor = A0;
+float Sens_val;
+void setup()
+{
+  pinMode(Sensor,INPUT);
+  pinMode(Motor,OUTPUT);
+  pinMode(G_pin,OUTPUT);
+  pinMode(R_pin,OUTPUT);
+  pinMode(B_pin,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Sens_val= analogRead(A0);
+  Serial.println(Sens_val);
+  	if(Sens_val>700)
+    {
+      digitalWrite(Motor,LOW);
+      digitalWrite(R_pin,0);
+      digitalWrite(G_pin,255);
+      digitalWrite(B_pin,0);
+    }
+  	else if(Sens_val>=265)
+    {
+      digitalWrite(R_pin,255);
+      digitalWrite(G_pin,127);
+      digitalWrite(B_pin,0);
+    }
+  	else{
+      digitalWrite(Motor,HIGH);
+      digitalWrite(R_pin,255);
+      digitalWrite(G_pin,0);
+      digitalWrite(B_pin,0);
+  }
+  
+}
